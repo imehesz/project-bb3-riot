@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/riot/2.3.18/riot+compiler.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/i18next/2.5.1/i18next.min.js"></script>
+
+    <script src="js/core.js"></script>
+    <script src="vendors/router.min.js"></script>
+
+    <script src="js/top-nav.js"></script>    
+    <script type="riot/tag" src="tags/top-nav.tag.html"></script>
+
+    <script src="js/book-page.js"></script>    
+    <script type="riot/tag" src="tags/book-page.tag.html"></script>
+
+    <script src="js/books-page.js"></script>    
+    <script type="riot/tag" src="tags/books-page.tag.html"></script>
+
+    <script type="riot/tag" src="tags/home-page.tag.html"></script>
+
+    <script src="js/t.js"></script>
+    <script type="riot/tag" src="tags/t.tag.html"></script>
+
+    <script src="js/web-app.js"></script>
+    <script type="riot/tag" src="tags/web-app.tag.html"></script>
+  </head>
+
+  <body>
+    <web-app></web-app>
+    <script>
+      /* global riot */
+      riot.mount("web-app");
+    </script>
+  </body>
+
+</html>

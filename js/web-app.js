@@ -1,0 +1,58 @@
+/* global MHX */
+/* global riot */
+/* global i18next */
+/* global $ */
+
+(function(){
+  "use strict";
+
+  class WebAppTag extends MHX.Tag {
+    constructor(riotScope) {
+      super(riotScope);
+    }
+    
+    onMount() {
+      riot.mixin("I18N", riot.observable());
+
+
+      $.getJSON("./locale/locale-translation.json", function(data) {
+        i18next.init({
+          "debug": true,
+          "lng": "hu",
+          "fallbackLng": "en",
+          "keySeparator": false,
+          "nsSeparator": false,
+          "resources": data
+        });
+  
+        window._t = i18next.t.bind(i18next);
+        riot.mixin("I18N").trigger("ready");
+      });
+      
+      var Route = riot.router.Route, 
+          DefaultRoute = riot.router.DefaultRoute, 
+          NotFoundRoute = riot.router.NotFoundRoute, 
+          RedirectRoute = riot.router.RedirectRoute;
+
+
+      riot.router.routes([
+        new DefaultRoute({tag: 'books-page'}),
+        new Route({path: "/home", tag: 'home-page'}),
+        new Route({path: '/books/read/:bookId/:chapterId', tag: 'book-page'}),
+        new Route({path: '/books/read/:bookId', tag: 'book-page'}),
+        new Route({path: "/books", tag: 'books-page'})
+        // new Route({path: "/books", tag: 'books-page'}).routes([
+          // new Route({path: '/read/:bookId/:chapterId', tag: 'book-page'}),
+          // new Route({path: '/read/:bookId', tag: 'book-page'}),
+          // new NotFoundRoute({tag: 'not-found'})
+        // ])
+      ]);
+
+      riot.router.start();
+
+
+    }
+  }
+  
+  window.MHX.WebAppTag = WebAppTag;
+})();

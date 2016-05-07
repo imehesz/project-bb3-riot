@@ -1,0 +1,11 @@
+<book-page>
+  <div>
+    <ul>
+      <li each={ ch in chapters }><a href="#/books/read/{ bookId }/{ ch }">{ ch }</a></li>
+      
+      <li each={ lines }>{id} {text}</li>
+    </ul>
+  </div>
+  
+  new MHX.BookPageTag(this);
+</book-page>

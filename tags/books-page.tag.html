@@ -1,0 +1,9 @@
+<books-page>
+  <div>
+    <ul each={ book in books }>
+      <li><a href="#/books/read/{ book.id }">{ book.shortHeader }</a></li>
+    </ul>
+  </div>
+  
+  new MHX.BooksPageTag(this);
+</books-page>
