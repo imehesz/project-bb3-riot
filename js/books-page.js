@@ -4,10 +4,6 @@
 (function(){
   "use strict";
 
-  MHX.Router.routes["books"] = function(id, action) {
-    riot.mount("#view", "books-page");
-  };
-
   class BooksPageTag extends MHX.Tag {
     constructor(riotScope) {
       super(riotScope);

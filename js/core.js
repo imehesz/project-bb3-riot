@@ -31,34 +31,7 @@
       console.error(e);      
     }
   }
-  
-  var Router = {
-    activeCollection: "",
-    activeId: "",
-    activeAction: "",
-    
-    routes: {
-      "home": function(id, action) {
-        riot.mount("#view", "home-page");
-      }
-    },
-    
-    handler: function(collection, id, action) {
-      console.log(collection, id, action, Router.routes);
-      
-      Router.activeCollection = collection || "home";
-      Router.activeId = id;
-      Router.activeAction = action;
-      
-      var routeFn = Router.routes[Router.activeCollection];
-      routeFn(Router.activeId, Router.activeAction);
-    },
-    
-    getActive: function(what) {
-      return Router["active" + what];
-    }
-  };
-  
+
   var Service = {
     getBookList: (optsObj) => {
       $.getJSON("https://imehesz.firebaseio.com/bookdata.json", (data) => {
@@ -114,7 +87,6 @@
   window.MHX = {
     Tag: Tag,
     Util: Util,
-    Router: Router,
     Service: Service
   }
 })();

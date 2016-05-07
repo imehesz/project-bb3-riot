@@ -12,13 +12,13 @@
     onMount() {
       super.onMount();
       
-      riot.route(this.updateNavigation.bind(this));
+      riot.router.on('route:updated', this.updateNavigation.bind(this));
       this.updateNavigation();
     }
     
-    updateNavigation() {
+    updateNavigation(activeRoute) {
       this.riotScope.update({
-        activeRoute: MHX.Router.getActive("Collection")        
+        activeRoute: activeRoute ? activeRoute.uri : ""
       });
     }
   }

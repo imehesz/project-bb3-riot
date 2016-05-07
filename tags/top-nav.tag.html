@@ -1,16 +1,12 @@
 <top-nav>
   <ul>
     <li>
-      <a if={ activeRoute != "home" } href="#/home">Home</a>
-      <span if={ activeRoute == "home" }>Home</span>
+      <a if={ activeRoute != "/home" } href="#/home">Home</a>
+      <span if={ activeRoute == "/home" }>Home</span>
     </li>
     <li>
-      <a if={ activeRoute != "list" } href="#/list">List</a>
-      <span if={ activeRoute == "list" }>List</span>
-    </li>
-    <li>
-      <a if={ activeRoute != "books" } href="#/books">Books</a>
-      <span if={ activeRoute == "books" }>Books</span>
+      <a if={ activeRoute != "/books" } href="#/books">Books</a>
+      <span if={ activeRoute == "/books" }>Books</span>
     </li>
   </ul>
   
