@@ -67,7 +67,7 @@
       defaultSettings: {
         langFrom: "esv",
         langTo: "hunv",
-        showSecondBook: false
+        showSecondBook: true
       },
       get: (s) => {
         return Util.SettingsUtil.settings[s];
@@ -76,13 +76,15 @@
         return Util.SettingsUtil.settings[k] = v;
       },
       getAll: function() {
-        return this.settings;
+        return Util.SettingsUtil.settings;
       },
       parseParams: (uri) => {
         if (!uri) uri = "";
         var pos = uri.indexOf("s={");
         var settingsStr = "";
         var settingsObj = null;
+        
+        Util.SettingsUtil.settings = Util.SettingsUtil.defaultSettings;
         
         if (pos > -1) {
           // let's get the settings
