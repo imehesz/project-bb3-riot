@@ -17,6 +17,7 @@
     }
     
     updateNavigation(activeRoute) {
+      console.log(activeRoute);
       this.riotScope.update({
         activeRoute: activeRoute ? activeRoute.uri : ""
       });

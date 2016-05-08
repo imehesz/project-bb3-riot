@@ -62,6 +62,39 @@
   };
   
   var Util = {
+    SettingsUtil: {
+      settings: null,
+      defaultSettings: {
+        langFrom: "esv",
+        langTo: "hunv",
+        showSecondBook: false
+      },
+      get: (s) => {
+        return Util.SettingsUtil.settings[s];
+      },
+      set: (k,v) => {
+        return Util.SettingsUtil.settings[k] = v;
+      },
+      getAll: function() {
+        return this.settings;
+      },
+      parseParams: (uri) => {
+        if (!uri) uri = "";
+        var pos = uri.indexOf("s={");
+        var settingsStr = "";
+        var settingsObj = null;
+        
+        if (pos > -1) {
+          // let's get the settings
+          settingsStr = uri.substr(pos+2, uri.length);
+          try{
+            Util.SettingsUtil.settings = Object.assign({}, Util.SettingsUtil.defaultSettings, JSON.parse(settingsStr));
+          } catch(e) {
+            console.error("ERR Parsing settings", e);
+          }
+        }
+      }
+    },
     ArrayUtil: {
       shuffle: function(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;

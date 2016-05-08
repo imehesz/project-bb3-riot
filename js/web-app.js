@@ -14,7 +14,6 @@
     onMount() {
       riot.mixin("I18N", riot.observable());
 
-
       $.getJSON("./locale/locale-translation.json", function(data) {
         i18next.init({
           "debug": true,
@@ -27,6 +26,14 @@
   
         window._t = i18next.t.bind(i18next);
         riot.mixin("I18N").trigger("ready");
+      });
+      
+      riot.router.use((req, resp, next) => {
+        try {
+          return next();
+        } finally {
+          MHX.Util.SettingsUtil.parseParams(req.uri);
+        }
       });
       
       var Route = riot.router.Route, 
@@ -49,8 +56,6 @@
       ]);
 
       riot.router.start();
-
-
     }
   }
   
