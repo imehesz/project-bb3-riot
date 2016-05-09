@@ -12,11 +12,13 @@
     constructor(riotScope) {
       this.riotScope = riotScope;
       
-      console.log("riot Scope in Tag", riotScope);
+      // console.log("riot Scope in Tag", riotScope);
 
       this.riotScope.on("mount", this.onMount.bind(this));
       this.riotScope.on("error", this.onError.bind(this));
       this.riotScope.on("update", this.onUpdate.bind(this));
+      
+      this.riotScope.attachSettings = this.attachSettings.bind(this);
     }
     
     log(x) {
@@ -29,6 +31,10 @@
     
     onError(e) {
       console.error(e);      
+    }
+    
+    attachSettings() {
+      return JSON.stringify(MHX.Util.SettingsUtil.getAll());
     }
   }
 

@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li each={ ch in chapters }>
-        <a href="#/books/read/{ bookId }/{ ch }">{ ch }</a>
+        <a  href="#/books/read/{ bookId }/{ ch }/?s={ attachSettings() }">{ ch }</a>
       </li>
       
       <li each={ lines }>{id} {text}</li>

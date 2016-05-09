@@ -12,7 +12,8 @@
     
     onMount() {
       super.onMount();
-      this.riotScope.href = this.riotScope.opts.href + "?s=" + JSON.stringify(MHX.Util.SettingsUtil.getAll());
+
+      this.riotScope.to = this.riotScope.opts.to + "?s=" + JSON.stringify(MHX.Util.SettingsUtil.getAll());
     }
   }
   

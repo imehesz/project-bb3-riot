@@ -2,7 +2,7 @@
   <div>
     <ul each={ book in books }>
       <li>
-        <mhxa href="#/books/read/{ book.id }">{ book.shortHeader }</mhxa>
+        <a href="#/books/read/{ book.id }/?s={ attachSettings() }">{ book.shortHeader }</a>
       </li>
     </ul>
   </div>

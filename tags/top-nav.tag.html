@@ -1,11 +1,11 @@
 <top-nav>
   <ul>
     <li>
-      <a if={ activeRoute != "/home" } href="#/home">Home</a>
+      <a if={ activeRoute != "/home" } href="#/home/?s={ attachSettings() }">Home</a>
       <span if={ activeRoute == "/home" }>Home</span>
     </li>
     <li>
-      <a if={ activeRoute != "/books" } href="#/books">Books</a>
+      <a if={ activeRoute != "/books" } href="#/books/?s={ attachSettings() }">Books</a>
       <span if={ activeRoute == "/books" }>Books</span>
     </li>
   </ul>

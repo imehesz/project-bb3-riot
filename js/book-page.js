@@ -1,3 +1,6 @@
+/* global MHX */
+/* global riot */
+
 (function(){
   "use strict";
 
@@ -21,7 +24,7 @@
             this.riotScope.update({
               lines: data,
               bookId: bookId
-            });          
+            });
           }
         });      
       } else if (bookId) {
@@ -30,7 +33,7 @@
             this.riotScope.update({
               chapters: data,
               bookId: bookId
-            });          
+            });
           }
         });
       }
