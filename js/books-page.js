@@ -12,7 +12,7 @@
     onMount() {
       super.onMount();
       
-      MHX.Service.getBookList({
+      MHX.Service.getBookList(MHX.Util.SettingsUtil.get("langFrom"), {
         successCb: (data) => {
           this.riotScope.update({
             books: data,

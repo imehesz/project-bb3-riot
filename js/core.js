@@ -39,8 +39,8 @@
   }
 
   var Service = {
-    getBookList: (optsObj) => {
-      $.getJSON("https://imehesz.firebaseio.com/bookdata.json", (data) => {
+    getBookList: (lang, optsObj) => {
+      $.getJSON("https://imehesz.firebaseio.com/bookdata.json?lang=" + lang, (data) => {
         if (optsObj && $.isFunction(optsObj.successCb)) {
           // TODO update when ready
           optsObj.successCb(data.books);
@@ -57,8 +57,8 @@
       });
     },
     
-    getLines: (bookId, chapterId, optsObj) => {
-      $.getJSON("https://imehesz.firebaseio.com/bookdata.json?bookId=" + bookId + "&chapterId=" + chapterId, (data) => {
+    getLines: (bookId, chapterId, lang, optsObj) => {
+      $.getJSON("https://imehesz.firebaseio.com/bookdata.json?bookId=" + bookId + "&chapterId=" + chapterId + "&lang=" + lang, (data) => {
         if (optsObj && $.isFunction(optsObj.successCb)) {
           // TODO update when ready
           optsObj.successCb(data.lines);
@@ -72,7 +72,7 @@
       settings: null,
       defaultSettings: {
         langFrom: "esv",
-        langTo: "hunv",
+        langTo: "nhun",
         showSecondBook: true
       },
       get: (s) => {
