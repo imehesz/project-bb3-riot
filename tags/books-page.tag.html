@@ -1,6 +1,7 @@
 <books-page>
   <div>
-    <ul each={ book in books }>
+    <search-form changeCb={ filterBooks }></search-form>
+    <ul each={ book in filteredBooks }>
       <li>
         <a href="#/books/read/{ book.id }/?s={ attachSettings() }">{ book.shortHeader }</a>
       </li>
