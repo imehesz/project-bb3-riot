@@ -1,16 +1,17 @@
 <book-page>
   <div>
-    <ul>
-      <li each={ ch in chapters }>
-        <a  href="#/books/read/{ bookId }/{ ch }/?s={ attachSettings() }">{ ch }</a>
-      </li>
-    </ul>
-    <ul>
-      <li each={ lines1 }>{id} {text}</li>
-    </ul>
-    <ul>
-      <li each={ lines2 }>{id} {text}</li>
-    </ul>
+    <p>
+      <a class="chip" each={ ch in chapters } href="#/books/read/{ bookId }/{ ch }/?s={ attachSettings() }">
+        { ch }
+      </a>
+      
+      <ul>
+        <li each={ lines1 }>{id} {text}</li>
+      </ul>
+      <ul>
+        <li each={ lines2 }>{id} {text}</li>
+      </ul>
+    </p>
   </div>
   
   new MHX.BookPageTag(this);

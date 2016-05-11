@@ -34,6 +34,8 @@
           }
         });
         
+        
+        
         if (MHX.Util.SettingsUtil.get("showSecondBook")) {
           MHX.Service.getLines(bookId, chapterId, MHX.Util.SettingsUtil.get("langTo"), {
             successCb: (data) => {

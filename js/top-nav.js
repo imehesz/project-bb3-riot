@@ -1,5 +1,6 @@
 /* global MHX */
 /* global riot */
+/* global $ */
 
 (function(){
   "use strict";
@@ -13,7 +14,9 @@
       super.onMount();
       
       riot.router.on('route:updated', this.updateNavigation.bind(this));
+
       this.updateNavigation();
+      $(".button-collapse").sideNav();
     }
     
     updateNavigation(activeRoute) {
