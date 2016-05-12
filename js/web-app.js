@@ -7,11 +7,8 @@
   "use strict";
 
   class WebAppTag extends MHX.Tag {
-    constructor(riotScope) {
-      super(riotScope);
-    }
-    
-    onMount() {
+
+    bootRiot() {
       riot.mixin("I18N", riot.observable());
 
       $.getJSON("./locale/locale-translation.json", function(data) {
@@ -56,6 +53,11 @@
       ]);
 
       riot.router.start();
+      
+      // we load the both books to get the header when needed
+      MHX.Service.getBookList(MHX.Util.SettingsUtil.get("langFrom"));
+      MHX.Service.getBookList(MHX.Util.SettingsUtil.get("langTo"));
+
     }
   }
   

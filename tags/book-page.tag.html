@@ -5,14 +5,24 @@
         { ch }
       </a>
       
-      <ul>
-        <li each={ lines1 }>{id} {text}</li>
-      </ul>
-      <ul>
-        <li each={ lines2 }>{id} {text}</li>
-      </ul>
+      <table>
+        <tr each={ line, i in lines1 }>
+          <td><sup>{line.id}</sup> {line.text}</td> 
+          <td><sup>{line.id}</sup> {lines2[i].text}</td>
+        </tr>
+      </table>
     </p>
   </div>
+  
+  <style>
+    sup {
+      color: #ddd;
+    }
+    
+    td {
+      padding: 0;
+    }
+  </style>
   
   new MHX.BookPageTag(this);
 </book-page>

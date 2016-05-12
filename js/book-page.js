@@ -20,7 +20,7 @@
       this.riotScope.chapters = [];
       this.riotScope.lines = [];
       
-      if (chapterId) {
+      if (chapterId && bookId) {
         var lines1Def = $.Deferred();
         this.riotScope.lines1 = [];
 
@@ -33,8 +33,6 @@
             lines1Def.resolve();
           }
         });
-        
-        
         
         if (MHX.Util.SettingsUtil.get("showSecondBook")) {
           MHX.Service.getLines(bookId, chapterId, MHX.Util.SettingsUtil.get("langTo"), {
@@ -49,12 +47,15 @@
         
         $.when(lines1Def, lines2Def).done( () => {
           console.log("got the lines!");
+
+          MHX.Util.Observable.trigger("chapterSelected", bookId, chapterId);
           this.riotScope.update();
         });
         
       } else if (bookId) {
         MHX.Service.getChapterList(bookId, {
           successCb: (data) => {
+            MHX.Util.Observable.trigger("bookSelected", bookId);
             this.riotScope.update({
               chapters: data,
               bookId: bookId

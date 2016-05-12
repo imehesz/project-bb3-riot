@@ -19,11 +19,16 @@
       this.riotScope.on("update", this.onUpdate.bind(this));
       
       this.riotScope.attachSettings = this.attachSettings.bind(this);
+      this.riotScope.obs = riot.observable();
+      
+      this.bootRiot();
     }
     
     log(x) {
       console.log(x);
     }
+    
+    bootRiot() {}
     
     onMount() {}
     
@@ -40,12 +45,22 @@
 
   var Service = {
     getBookList: (lang, optsObj) => {
-      $.getJSON("https://imehesz.firebaseio.com/bookdata.json?lang=" + lang, (data) => {
-        if (optsObj && $.isFunction(optsObj.successCb)) {
+      var cacheId = lang.toLowerCase() + "-books";
+      var cachedBooks = MHX.Util.CacheUtil.get(cacheId);
+      
+      if (cachedBooks && cachedBooks.length > 0) {
+        console.log("LOADING CACHED! WOOHOO!");
+        optsObj.successCb(cachedBooks);
+      } else {
+        $.getJSON("https://imehesz.firebaseio.com/bookdata.json?lang=" + lang, (data) => {
           // TODO update when ready
-          optsObj.successCb(data.books);
-        }
-      });
+          
+          MHX.Util.CacheUtil.set(cacheId, data.books);
+          if (optsObj && $.isFunction(optsObj.successCb)) {
+            optsObj.successCb(data.books);
+          }
+        });
+      }
     },
     
     getChapterList: (bookId, optsObj) => {
@@ -68,6 +83,49 @@
   };
   
   var Util = {
+    // must be used after items had been cached
+    InfoUtil: {
+      getField: function(field, lang, id) {
+        var cachedBooks = MHX.Util.CacheUtil.get(lang + "-books");
+        
+        if (cachedBooks && cachedBooks.length) {
+          for(let i=0; i<cachedBooks.length; i++) {
+            var bookObj = cachedBooks[i];
+            
+            if (bookObj.id == id || bookObj.bookId == id) {
+              return bookObj[field];
+            }
+          }
+        }
+      },
+      
+      getShortHeader: function(lang, id) {
+        return MHX.Util.InfoUtil.getField("shortHeader", lang, id);
+      },
+      
+      getLongHeader: function(lang, id) {
+        return MHX.Util.InfoUtil.getField("longHeader", lang, id);
+      },
+      
+      isOt: function(lang, id) {
+        
+      },
+      
+      isNt: function(lang, id) {
+        
+      }
+    },
+    CacheUtil: {
+      _storage: {},
+      
+      get: function(k) {
+        return MHX.Util.CacheUtil._storage[k];
+      },
+      
+      set: function(k, v) {
+        MHX.Util.CacheUtil._storage[k] = v;
+      }
+    },
     SettingsUtil: {
       settings: null,
       defaultSettings: {
@@ -122,7 +180,9 @@
       
         return array;
       }
-    }
+    },
+    
+    Observable: riot.observable()
   }
   
   window.MHX = {
