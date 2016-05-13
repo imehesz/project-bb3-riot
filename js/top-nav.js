@@ -13,6 +13,7 @@
       riot.router.on('route:updated', this.updateNavigation.bind(this));
 
       this.updateNavigation();
+      
       $(".button-collapse").sideNav();
       
       MHX.Util.Observable.on("bookSelected", (bookId) => {
@@ -32,6 +33,10 @@
                   MHX.Util.InfoUtil.getLongHeader(MHX.Util.SettingsUtil.get("langTo"), bookId) + " " + chapterId
         });
       });
+      
+      this.riotScope.openSettings = () => {
+        MHX.Util.Observable.trigger("openSettings");
+      };
     }
     
     updateNavigation(activeRoute, title) {

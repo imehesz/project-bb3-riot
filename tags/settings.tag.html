@@ -1,0 +1,28 @@
+<settings>
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Settings</h4>
+      
+      <div>
+        <form name="settings-form">
+          <div class="input-field col s12">
+            <div>Language From</div>
+            <select class="browser-default">
+              <option each={ fromLanguages } value={ id } selected={ id == currentFromLanguage }>{ label }</option>
+            </select>
+            <br />
+            <div>Language To</div>
+            <select class="browser-default">
+              <option each={ toLanguages } value={ id }>{ label }</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:void(0);" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+  
+  new MHX.SettingsTag(this);
+</settings>
