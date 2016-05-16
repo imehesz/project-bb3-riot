@@ -1,5 +1,7 @@
 <book-page>
   <div>
+    <p show={ loading }>loading ...</p>
+    
     <p>
       <a class="chip" each={ ch in chapters } href="#/books/read/{ bookId }/{ ch }/?s={ attachSettings() }">
         { ch }

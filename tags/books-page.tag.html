@@ -2,6 +2,8 @@
   <div>
     <search-form changeCb={ filterBooks }></search-form>
     
+    <p show={ loading }>loading ...</p>
+    
     <p>
       <a class="chip" each={ book in filteredBooks } href="#/books/read/{ book.id }/?s={ attachSettings() }">
         { book.shortHeader }

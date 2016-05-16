@@ -7,29 +7,29 @@
   "use strict";
 
   class BookPageTag extends MHX.Tag {
-    constructor(riotScope) {
-      super(riotScope);
-    }
-    
-    onMount() {
-      super.onMount();
+    bootRiot() {
+      super.bootRiot();
+
+      var rs = this.riotScope;
 
       var bookId = riot.router.current.params.bookId;
       var chapterId = riot.router.current.params.chapterId;
       
-      this.riotScope.chapters = [];
-      this.riotScope.lines = [];
+      rs.chapters = [];
+      rs.lines = [];
+      
+      rs.loading = true;
       
       if (chapterId && bookId) {
         var lines1Def = $.Deferred();
-        this.riotScope.lines1 = [];
+        rs.lines1 = [];
 
         var lines2Def = $.Deferred();
-        this.riotScope.lines2 = [];
+        rs.lines2 = [];
         
         MHX.Service.getLines(bookId, chapterId, MHX.Util.SettingsUtil.get("langFrom"), {
           successCb: (data) => {
-            this.riotScope.lines1 = data;
+            rs.lines1 = data;
             lines1Def.resolve();
           }
         });
@@ -46,17 +46,17 @@
         }
         
         $.when(lines1Def, lines2Def).done( () => {
-          console.log("got the lines!");
-
           MHX.Util.Observable.trigger("chapterSelected", bookId, chapterId);
-          this.riotScope.update();
+          rs.loading = false;
+          rs.update();
         });
         
       } else if (bookId) {
         MHX.Service.getChapterList(bookId, {
           successCb: (data) => {
             MHX.Util.Observable.trigger("bookSelected", bookId);
-            this.riotScope.update({
+            rs.update({
+            loading: false,
               chapters: data,
               bookId: bookId
             });

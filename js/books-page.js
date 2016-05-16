@@ -5,18 +5,17 @@
   "use strict";
 
   class BooksPageTag extends MHX.Tag {
-    constructor(riotScope) {
-      super(riotScope);
-    }
-    
-    onMount() {
-      super.onMount();
+    bootRiot() {
+      super.bootRiot();
+      
+      this.riotScope.loading = true;
       
       MHX.Service.getBookList(MHX.Util.SettingsUtil.get("langFrom"), {
         successCb: (data) => {
           this.riotScope.update({
             books: data,
-            filteredBooks: data
+            filteredBooks: data,
+            loading: false
           });          
         }
       });
