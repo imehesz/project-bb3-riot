@@ -4,25 +4,54 @@
       <h4>Settings</h4>
       
       <div>
-        <form name="settings-form">
+        <form name="settingsForm">
           <div class="input-field col s12">
-            <div>Language From</div>
-            <select class="browser-default">
-              <option each={ fromLanguages } value={ id } selected={ id == currentFromLanguage }>{ label }</option>
-            </select>
-            <br />
-            <div>Language To</div>
-            <select class="browser-default">
-              <option each={ toLanguages } value={ id }>{ label }</option>
-            </select>
+            <p>
+              <div>Language From</div>
+              <select id="langFrom" class="browser-default">
+                <option each={ fromLanguages } 
+                  value={ id } 
+                  selected={ id == currentFromLanguage }>{ label }
+                </option>
+              </select>
+            </p>
+            
+            <p>
+              <div>Language To</div>
+              <select id="langTo" class="browser-default">
+                <option each={ toLanguages } 
+                  value={ id }
+                  selected={ id == currentToLanguage }>{ label }
+                </option>
+              </select>
+            </p>
+            
+            <p class="wtf">
+              <div>Show Second Book</div>
+              <div class="switch">
+                <label>
+                  No
+                  <input id="showSecondBook" type="checkbox" checked={ currentShowSecondBook }>
+                  <span class="lever"></span>
+                  Yes
+                </label>
+              </div>
+            </p>
+            
           </div>
         </form>
       </div>
     </div>
     <div class="modal-footer">
-      <a href="javascript:void(0);" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="javascript:void(0);" onclick={ applySettings } class="btn modal-action modal-close waves-effect waves-green">Save</a>
     </div>
   </div>
+  
+  <style>
+    .switch{
+      position: relative;
+    }
+  </style>
   
   new MHX.SettingsTag(this);
 </settings>
