@@ -44,7 +44,7 @@
         new Route({path: "/home", tag: 'home-page'}),
         new Route({path: '/books/read/:bookId/:chapterId', tag: 'book-page'}),
         new Route({path: '/books/read/:bookId', tag: 'book-page'}),
-        new Route({path: "/books", tag: 'books-page'})
+        new Route({path: "/books", tag: 'books-page'}),
         // new Route({path: "/books", tag: 'books-page'}).routes([
           // new Route({path: '/read/:bookId/:chapterId', tag: 'book-page'}),
           // new Route({path: '/read/:bookId', tag: 'book-page'}),

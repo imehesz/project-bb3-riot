@@ -31,19 +31,20 @@
       });
       
       rs.applySettings = () => {
-        console.log(rs.settingsForm.showSecondBook.value);
+        console.log(rs.settingsForm.showSecondBook.checked);
         
         MHX.Util.SettingsUtil.set("langFrom", rs.settingsForm.langFrom.value);
         MHX.Util.SettingsUtil.set("langTo", rs.settingsForm.langTo.value);
-        MHX.Util.SettingsUtil.set("showSecondBook", rs.settingsForm.showSecondBook.value);
+        MHX.Util.SettingsUtil.set("showSecondBook", rs.settingsForm.showSecondBook.checked);
         
         if (riot.router.current.uri.indexOf("s={") > -1) {
-          riot.route(riot.router.current.uri.substr(0, riot.router.current.uri.indexOf("s={")) + "?s=" + this.attachSettings());
+          riot.route("/" + riot.router.current.uri.substr(0, riot.router.current.uri.indexOf("s={")-1) + "?s=" + this.attachSettings());
         } else {
           riot.route(riot.router.current.uri + "?s=" + this.attachSettings());
         }
         
-        console.log();
+        // ouch!? :( TODO make it nicer
+        window.location.reload();
       };
     }
   }
