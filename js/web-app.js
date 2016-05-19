@@ -38,6 +38,9 @@
           NotFoundRoute = riot.router.NotFoundRoute, 
           RedirectRoute = riot.router.RedirectRoute;
 
+      this.riotScope.openSettings = () => {
+        MHX.Util.Observable.trigger("openSettings");
+      };
 
       riot.router.routes([
         new DefaultRoute({tag: 'books-page'}),

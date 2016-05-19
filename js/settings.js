@@ -15,7 +15,7 @@
         {id: "esv", label: "English Standard Version (ESV)"},
         {id: "nhun", label: "Magyar (Uj)"},
         {id: "greek", label: "Greek"},
-        {id: "esp", label: "Spanish"}
+        //{id: "esp", label: "Spanish"}
       ];
 
       var rs = this.riotScope;

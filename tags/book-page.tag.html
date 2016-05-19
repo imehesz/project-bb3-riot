@@ -9,8 +9,8 @@
       
       <table>
         <tr each={ line, i in lines1 }>
-          <td><sup>{line.id}</sup> {line.text}</td> 
-          <td><sup>{line.id}</sup> {lines2[i].text}</td>
+          <td><sup>{line.verseId}</sup> {line.text}</td> 
+          <td show={ lines2[i].text }><sup>{line.verseId}</sup> {lines2[i].text}</td>
         </tr>
       </table>
     </p>
@@ -18,11 +18,12 @@
   
   <style>
     sup {
-      color: #ddd;
+      color: #aaa;
     }
     
     td {
-      padding: 0;
+      vertical-align: top;
+      padding: 5px;
     }
   </style>
   

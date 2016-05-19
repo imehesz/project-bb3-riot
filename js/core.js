@@ -52,9 +52,7 @@
         console.log("LOADING CACHED! WOOHOO!");
         optsObj.successCb(cachedBooks);
       } else {
-        $.getJSON("https://imehesz.firebaseio.com/bookdata.json?lang=" + lang, (data) => {
-          // TODO update when ready
-          
+        $.getJSON("http://185.99.132.197:1337/book/?lang=" + lang, (data) => {
           MHX.Util.CacheUtil.set(cacheId, data.books);
           if (optsObj && $.isFunction(optsObj.successCb)) {
             optsObj.successCb(data.books);
@@ -64,19 +62,17 @@
     },
     
     getChapterList: (bookId, optsObj) => {
-      $.getJSON("https://imehesz.firebaseio.com/bookdata.json?bookId=" + bookId, (data) => {
+      $.getJSON("http://185.99.132.197:1337/book/" + bookId, (data) => {
         if (optsObj && $.isFunction(optsObj.successCb)) {
-          // TODO update when ready
           optsObj.successCb(data.chapters);
         }
       });
     },
     
     getLines: (bookId, chapterId, lang, optsObj) => {
-      $.getJSON("https://imehesz.firebaseio.com/bookdata.json?bookId=" + bookId + "&chapterId=" + chapterId + "&lang=" + lang, (data) => {
+      $.getJSON("http://185.99.132.197:1337/book/" + bookId + "/" + chapterId + "?lang=" + lang, (data) => {
         if (optsObj && $.isFunction(optsObj.successCb)) {
-          // TODO update when ready
-          optsObj.successCb(data.lines);
+          optsObj.successCb(data.verses);
         }
       });
     }
@@ -100,11 +96,11 @@
       },
       
       getShortHeader: function(lang, id) {
-        return MHX.Util.InfoUtil.getField("shortHeader", lang, id);
+        return MHX.Util.InfoUtil.getField("headerShort", lang, id) || "";
       },
       
       getLongHeader: function(lang, id) {
-        return MHX.Util.InfoUtil.getField("longHeader", lang, id);
+        return MHX.Util.InfoUtil.getField("headerLong", lang, id) || "";
       },
       
       isOt: function(lang, id) {

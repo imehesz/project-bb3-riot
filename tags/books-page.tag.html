@@ -5,8 +5,8 @@
     <p show={ loading }>loading ...</p>
     
     <p>
-      <a class="chip" each={ book in filteredBooks } href="#/books/read/{ book.id }/?s={ attachSettings() }">
-        { book.shortHeader }
+      <a class="chip" each={ book in filteredBooks } href="#/books/read/{ book.bookId }/?s={ attachSettings() }">
+        { getHeader(book, "short") }
       </a>
     </p>
   </div>
