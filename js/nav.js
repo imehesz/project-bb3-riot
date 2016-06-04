@@ -17,18 +17,17 @@
       $(".button-collapse").sideNav();
       
       MHX.Util.Observable.on("bookSelected", (bookId) => {
-        console.log("BOOK SELECTED!", bookId);
         this.riotScope.update({
+          backLink: "#/books",
           title:  MHX.Util.InfoUtil.getLongHeader(MHX.Util.SettingsUtil.get("langFrom"), bookId) + " | " +
                   MHX.Util.InfoUtil.getLongHeader(MHX.Util.SettingsUtil.get("langTo"), bookId)
         });
       });
       
       MHX.Util.Observable.on("chapterSelected", (bookId, chapterId) => {
-        console.log("CHAPTER SELECTED!", bookId, chapterId);
-      
         // TODO merge with top
         this.riotScope.update({
+          backLink: "#/books/read/" + bookId, 
           title:  MHX.Util.InfoUtil.getLongHeader(MHX.Util.SettingsUtil.get("langFrom"), bookId) + " " + chapterId + " | " +
                   MHX.Util.InfoUtil.getLongHeader(MHX.Util.SettingsUtil.get("langTo"), bookId) + " " + chapterId
         });
