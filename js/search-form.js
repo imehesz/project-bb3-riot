@@ -10,8 +10,8 @@
       super(riotScope);
     }
     
-    onMount() {
-      super.onMount();
+    bootRiot() {
+      super.bootRiot();
       
       this.riotScope.textChanged = (e) => {
         if (this.riotScope.opts.changecb && typeof this.riotScope.opts.changecb) {
