@@ -41,6 +41,18 @@
           </div>
         </form>
       </div>
+      
+      <br /><br />
+      
+      <h4>History</h4>
+      
+      <div>
+        <ul class="history">
+          <li each={ booksHistory }>
+            <a href="#/books/read/{ bookId }/{ chapterId }/?s={ attachSettings() }">{ title }</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="modal-footer">
       <a href="javascript:void(0);" onclick={ applySettings } class="btn modal-action modal-close waves-effect waves-green">Save</a>
@@ -48,8 +60,12 @@
   </div>
   
   <style>
-    .switch{
+    .switch label{
       position: relative;
+    }
+    
+    ul.history li {
+      display: inline;
     }
   </style>
   

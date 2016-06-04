@@ -122,6 +122,9 @@
         MHX.Util.CacheUtil._storage[k] = v;
       }
     },
+    HistoryUtil: {
+      books: []
+    },
     SettingsUtil: {
       settings: null,
       defaultSettings: {
